@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0"?> 
 <game name="Egerfortia" x="2" y="0"> <!-- The Engine supports score tracking. In this tag, add score="on", and if you want to display a maxscore, add maxscore="###" as well -->
 	<!--
 		In order to modify the player's score, use:
