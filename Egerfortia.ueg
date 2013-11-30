@@ -1,0 +1,624 @@
+<?xml version="1.0"?>
+<game name="Egerfortia" x="2" y="0"> <!-- The Engine supports score tracking. In this tag, add score="on", and if you want to display a maxscore, add maxscore="###" as well -->
+	<!--
+		In order to modify the player's score, use:
+		<utopiascript>score +5</utopiascript> - increase by 5
+		<utopiascript>score -5</utopiascript> - decrease by 5
+		<utopiascript>score =5</utopiascript> - set to 5
+	-->
+	<commands>
+		<globalkeys>
+			<key match="cthulhu fhtagn">
+				<utopiascript>requireItem 4 1 I don't understand that command.</utopiascript>
+				<!-- Before the player is supposed to have any knowledge of the command, it appears to work like any other malformed command. -->
+				<utopiascript>requireItem 0 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 1 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 2 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 3 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 5 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 6 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 7 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 8 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>requireItem 9 1 You need to find all of the books first!</utopiascript>
+				<utopiascript>print The old man materializes in front of you, and says, "Chaxvor, do you have any idea how rich you've made us - I mean me - err, you... oh, fiddlesticks. Thing is, Chaxvor... I'm you. Only not really. I'm from the future. See, the thing is... the Book of Foresight has a bit more magic in it than I thought." At that, he takes the bag of holding from you, you suddenly find yourself in the room you met him in, and he places the ten books around the edge of the circle.</utopiascript>
+				<utopiascript>pause</utopiascript>
+				<utopiascript>print "Come here," he says, "stand in the center of the circle." As you step into the circle, he clasps his hands together, and shouts "Ortano... fordigyama!"</utopiascript>
+				<utopiascript>pause</utopiascript>
+				<utopiascript>print In a rush, the room around you disappears and you see the decline of the library: books falling off shelves with nobody to replace them, scrolls withering to dust as they wait uncared for, manuscripts becoming archaic as language evolves around them. You see the span of fifty years' time in the course of a minute, and are forced to your knees by the mental onslaught, and pass out.</utopiascript>
+				<utopiascript>pause</utopiascript>
+				<utopiascript>print Hours later, you awaken in a puddle of your own drool, with a crumbled manuscript clutched against your chest. You sit up immediately, and unfurl the manuscript, which trails for many feet - you approximate that it must be at least 30 feet long. At the very top of the scroll, it reads, "Gentlemen's Agreement of Bacrum." Recalling a bet you took before leaving, you realize that Tilrit Eteph owes you twenty gold sovereigns.</utopiascript>
+				<utopiascript>pause</utopiascript>
+				<utopiascript>quitGame You giddily collect yourself and make your way out of the library, to be received as the man who solved the mystery of the Constitution - or rather, Gentlemens' Agreement - of Bacrum.</utopiascript>
+			</key>
+			<key match="">
+				<utopiascript>print You should probably get moving, ya lazy bum!</utopiascript>
+				<utopiascript>addItem 10 1</utopiascript>
+				<utopiascript>requireItem 10 10</utopiascript>
+				<utopiascript>quitGame \n\nTOO LATE. YOU HAVE BEEN EATEN BY A GRUE!</utopiascript>
+			</key>
+			<key match="(exit)|(quit)">
+				<utopiascript>quitGame Goodbye. Thank you for playing Egerfortia!</utopiascript>
+			</key>
+			<key match="savestate">
+				<utopiascript>savestate test.ues</utopiascript>
+			</key>
+			<key match="loadstate">
+				<utopiascript>loadstate test.ues</utopiascript>
+			</key>
+		</globalkeys>
+	</commands>
+	<items>
+		<!-- The "id" attribute is actually not read by the Engine. It's there for reference, for using addItem, takeItem, and requireItem -->
+		<item id="0">Book of Unity</item>
+		<item id="1">Book of Deception</item>
+		<item id="2">Book of Passion</item>
+		<item id="3">Book of Restraint</item>
+		<item id="4">Book of Foresight</item>
+		<item id="5">Book of Blindness</item>
+		<item id="6">Book of Discovery</item>
+		<item id="7">Book of Stagnancy</item>
+		<item id="8">Book of Elegance</item>
+		<item id="9">Book of Bureaucracy</item>
+		<item id="10"> </item> <!-- Number of times the player has entered nothing -->
+		<item id="11"> </item> <!-- Number of times the player has signed in the bureaucracy room -->
+	</items>
+	<rooms width="4" height="4"> <!-- Sets the height and width of the dungeon. (0,0) is at the bottom-left, and it uses Cartesian, positive, coordinates -->
+		<room x="0" y="0"> <!-- Discovery Room -->
+			<roomstate>
+				<shortdescription>THIS ROOM IS DELIBERATELY EMPTY. IT HAS NOT BEEN IMPLEMENTED YET.</shortdescription>
+				<longdescription>THIS ROOM IS DELIBERATELY EMPTY. IT HAS NOT BEEN IMPLEMENTED YET.</longdescription>
+				<!-- Keys use regular expressions to see if user input matches. -->
+				<key match="implement( room)?">
+				<!-- User input is forced to lower case, so don't put capitals in your keys, or they'll never match. -->
+					<utopiascript>print As you throw up your hands in a grand divine gesture, the room blooms into life. Gigantic mushrooms, beautiful butterflies, and a brilliant sun pop out of nowhere, and the room turns into a magical wonderland. As the room settles into its new shape, a marble pedestal ascends from the floor, holding a book.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>This room has been transformed into a magical wonderland.</shortdescription>
+				<longdescription>Gigantic mushrooms, beautiful butterflies, and a brilliant sun illuminate the room, revealing a magical wonderland. A book sits on a marble pedestal.</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>addItem 6</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+					<utopiascript>print As you lift the book, the room returns to its previous state: nothingness. You now have the Book of Discovery!</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>THIS ROOM IS DELIBERATELY EMPTY. IT HAS NOT BEEN IMPLEMENTED YET.</shortdescription>
+				<longdescription>THIS ROOM IS DELIBERATELY EMPTY. IT HAS NOT BEEN IMPLEMENTED YET.</longdescription>
+				<key match="implement(( the)? room)?">
+					<utopiascript>print As you throw up your hands in a grand divine gesture, nothing happens. The magic of the room was contained in the book, which is safely tucked in your Bag of Holding.</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="1" y="0"> <!-- Old Man Room -->
+			<roomstate>
+				<shortdescription>As you enter the room, you see an elaborate arcane circle, and a robed figure, who asks you to APPROACH him.</shortdescription>
+				<longdescription>As you enter the room, you note that on the floor to the south is a large arcane-looking circle, extremely complex. The source of the whispers becomes immediately apparent to you, as there is a heavily robed figure standing in the middle of the circle, his face shadowed. "Ah, Chaxvor. Oh, no, your name isn't the only thing I know about you. But that's not the important thing. APPROACH me, and I will tell you all you need to know about this wretched place.</longdescription>
+				<key match="approach( him)?">
+					<utopiascript>print As you approach, he thanks you for your trust. "It is not often that one wanders in here, willing to trust me. In exchange for your assistance, I offer you mine. I have divined the secrets of the Constitution of Bacrum, but I am far too old to act upon them. I have been trapped in here for fifty years by the library's magic, but you are my ticket out." He hands you a tattered old bag. "You will need this. It is a special bag of holding, which you will use to carry very special objects. You see, the Constitution is not here. It is not anywhere. Instead, it is everywhere. Well, not quite. But the Constitution's writers put ten ideas into it when they devised it:\n\n</utopiascript>
+					<utopiascript>print "Unity, Deception, Passion, Restraint, Foresight, Blindness, Discovery, Stagnancy, Elegance, and Bureaucracy.\n\n</utopiascript>
+					<utopiascript>print "The Constitution's magic has caused it to split into ten personified books, each in its own room in this library. Finding them will not be easy, but I did manage to find one before my strength waned to nothingness. In that bag, you will find the Book of Foresight.\n\n</utopiascript>
+					<utopiascript>print "Type "inv" or "inventory" to look in your bag. A few more pointers: type "move" and then a cardinal direction to move between rooms - or you can drop the "move" entirely. If you want to see more of a room, type "desc" or "describe". When you find all ten books, simply speak, "Cthulhu fhtagn", and I will appear.\n\n</utopiascript>
+					<utopiascript>print "...oh, and no more ALL CAPS to tell you what to do."</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+					<utopiascript>additem 4</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>As you enter the room, you see an elaborate arcane circle, and remember that the old man asked you to say "Cthulhu fhtagn" when you need him to appear.</shortdescription>
+				<longdescription>As you enter the room, you see an elaborate arcane circle, and remember that the old man asked you to say "Cthulhu fhtagn" when you need him to appear.</longdescription>
+			</roomstate>
+		</room>
+		<room x="2" y="0"> <!-- Entrance Room -->
+			<roomstate>
+				<shortdescription>This is the room in which you woke up. There's not a whole lot here, except for doors.</shortdescription>
+				<longdescription>As you wake up, you find yourself in a room that is a perfect cube, about 30 feet to a side. You have a strange feeling that every room in this place is similarly shaped and sized, and you see three doors; to the North, East, and West. You shake your head, and try to REMEMBER what's going on.</longdescription>
+				<key match="remember">
+					<utopiascript>print The Bureaucracy Guild of Kalum periodically sends bands of brave and fervent volunteers into the depths of the Government Affairs Office of Bacrum to locate the possibly mythical Constitution of Bacrum. Few return alive, and those that do are horribly scarred, both mentally and physically.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print The sad truth of the matter is that the government proceedings of the Empire of Bacrum are a terrifying tangle of redundancy and confusion. The problem stems from the first Constitution of Bacrum (or possibly Constitutions of Bacrum, or Gentleman's Agreement of Bacrum, depending on which historian you believe), which was composed by delegates from the different city-states that spread across the southern part of the continent of Archelum.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print Some have theorized that the maddening language of the original constitution arose from a fervent paranoia on the part of each of the signers. The thinking was, apparently, that if none of them could completely understand the agreement, none would be able to use the power of the agreement to gain control over any of the others. This was necessary because of the magical nature of the pact, and its power to enforce the Law upon the nations involved.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print Whatever the reasoning, the end result was a document so convoluted that the necessary alterations that inevitably sprung up only a decade later were impossible. The new delegates could not even understand how to amend the document. Eventually, a temporary system was sorted out, and the original constitution was shelved in a back room of the new Government Affairs Office.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print The temporary system and changes were then tested against the powerful magic of the Constitution, resulting, in some cases, in rather tragic accidents. However, eventually an extremely complex and somewhat arbitrary system emerged. Since then, the general process has become tradition: any time a change needs to be made, the old system is shoved into a room added onto the increasingly labyrinthine Government Affairs Office, and a new system is tenuously worked out.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print You are Chaxvor Drael, a student of Bacrum Law at the almost equally labyrinthine Egerfort University. You have decided, on your own free will, to brave the depths of the Bacrum Legal Library to attempt to find the mythic Constitution of Bacrum, if it exists. Your determination is second to none, and your skill in avoiding death is hopefully equally exceptional; the library has never liked intruders.</utopiascript>
+					<utopiascript>pause</utopiascript>
+					<utopiascript>print You hear a whisper coming from the room to the west of you: "Psst, c'mere, kid, MOVE WEST, or you'll never solve this library."</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>This is the room in which you woke up. There's not a whole lot here, except for doors.</shortdescription>
+				<shortdescription>This is the room in which you woke up. There's not a whole lot here, except for doors. There are doors to the North, East, and West.</shortdescription>
+			</roomstate>
+		</room>
+		<room x="3" y="0"> <!-- Restraint Room -->
+			<roomstate>
+				<shortdescription>On the floor under a desk is a book covered in chains, and on top of that desk is a scroll on which is written, "Ye Olde Constitution of Bacrum".</shortdescription>
+				<longdescription>As you enter the room, your first impression is that you have just entered the most well-stocked legal library ever; in fact, it looks more like a legal library than the rest of the library has! There are piles of papers and books and other such items on the shelves, piled on tables, sitting in stacks on the floor. On the floor under a desk on the far side of the room is a book with chains running across the front of it, but more curious to you is the scroll on top of the desk, which carries the seal of the Royal Magister of Bacrum, and at the very top, in extremely ornate letters, are the words, "Ye Olde Constitution of Bacrum".</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))( the)? book">
+					<utopiascript>addItem 3</utopiascript>
+					<utopiascript>print You received the Book of Restraint!</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="((take)|(grab)|(pick up)|(lift))( the)? scroll">
+					<utopiascript>quitGame As you lift the scroll, it bursts into flames. In fact, every single paper item in the entire room bursts into flames simultaneously. You manage to drop the scroll before it burns you, but you actually suffocate to death because the fire consumes all of the oxygen in a matter of seconds.</utopiascript>
+				</key>
+				<key match="(take)|(grab)|(pick up)|(lift)">
+					<utopiascript>print You'll need to be specific. Which item do you want?</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Where once there were piles upon piles of papers, documents, books, scrolls, and manifestos, there is now only an empty room. You successfully picked the Book of Restraint out from the myriad false documents.</shortdescription>
+				<longdescription>Where once there were piles upon piles of papers, documents, books, scrolls, and manifestos, there is now only an empty room. You successfully picked the Book of Restraint out from the myriad false documents.</longdescription>
+			</roomstate>
+		</room>
+		<room x="0" y="1"> <!-- Chair Room -->
+			<roomstate>
+				<shortdescription>Okay, so here's the deal. The room is empty. No really, it's completely empty. Well, not completely. There's a chair here. Well, not so much a chair as a throne. It's pretty magnificent. Looks like it would be a good place to take a load off. Probably won't kill you.</shortdescription>
+				<longdescription>Okay, so here's the deal. The room is empty. No really, it's completely empty. Well, not completely. There's a chair here. Well, not so much a chair as a throne. It's pretty magnificent. Looks like it would be a good place to take a load off. Probably won't kill you.</longdescription>
+				<key match="look up">
+					<utopiascript>print You see bones flattened into the ceiling.</utopiascript>
+				</key>
+				<key match="((sit)( down)?((( in)|( on))?(( chair)|( throne)))?)|(take a load off)">
+					<utopiascript>quitGame As you place your left buttock on the seat, you hear an audible click come from beneath the chair. Thinking that you might be safe if you don't move, you keep as still as humanly possible. Unfortunately, the mechanism doesn't care. It releases with the force of a thousand angry bulls, and your already-quite-dead body is flung quite spectacularly against the ceiling. If you had bothered to look up, you would have noticed the bones of the last person who sat in the chair still plastered to the ceiling.</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="1" y="1"> <!-- Foresight Room -->
+			<roomstate>
+				<shortdescription>You notice that the room is completely empty, except for an extremely large crystal ball in the center of the room - in fact, it is larger than any crystal ball you've ever seen; it takes up a sizable portion of the room.</shortdescription>
+				<longdescription>You notice that the room is completely empty, except for an extremely large crystal ball in the center of the room - in fact, it is larger than any crystal ball you've ever seen; it takes up a sizable portion of the room.</longdescription>
+				<key match="((peer)|(watch)|(look)|(gaze))((( in)|( into))( the)?( crystal)? ball)?">
+					<utopiascript>print As you peer into the crystal ball, the cloudy mists within solidify into a concrete scene. You see a man, lying on the floor. The image is dimly lit, and some liquid is flowing freely from his mouth. As the image shimmers slightly, you get a better look at his face; it's you.</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="2" y="1"> <!-- Passion Room -->
+			<roomkey match="jump">
+				<utopiascript>quitGame You attempt to leap across the moat, but do not make it far enough. The piranha devour you quite happily. Take solace; they got indigestion.</utopiascript>
+			</roomkey>
+			<roomkey match="(jump in)|(swim)">
+				<utopiascript>quitGame You jump into the moat. The piranha devour you quite happily. Take solace; they got indigestion.</utopiascript>
+			</roomkey>
+			<roomkey match="sit">
+				<utopiascript>quitGame You sit on the edge of the moat, and the egde crumbles beneath you, tossing you into the waters. The piranha devour you quite happily. Take solace; they got indigestion.</utopiascript>
+			</roomkey>
+			<roomstate>
+				<shortdescription>There is a book, aflame, with a moat. You cannot see any way across the moat.</shortdescription>
+				<longdescription>In the middle of the room is a platform, ringed with a moat. On the platform is a book which looks red, though its color is difficult to divine, considering that the book is engulfed in violent flames. Despite the size of the blaze, you feel no heat as you approach it. The moat is ten feet wide, and filled with what appear to be piranha. There is no visible way to cross the moat. Around the entire room are bookshelves, filled with ancient texts and covered in dust.</longdescription>
+				<key match="(disturb)|(throw book)|(disrupt)|(agitate)|(splash)">
+					<utopiascript>print The piranha jump and gnash and tear and rip, and the splashing causes an invisible walkway to be visibly covered in water.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>There is a book, aflame, with a moat. The moat is crossable by way of an invisible bridge whose existence is made obvious by being covered in water.</shortdescription>
+				<longdescription>In the middle of the room is a platform, ringed with a moat. On the platform is a book which looks red, though its color is difficult to divine, considering that the book is engulfed in violent flames. Despite the size of the blaze, you feel no heat as you approach it. The moat is ten feet wide, and filled with what appear to be piranha. There is now an invisible bridge across the moat, covered in clearly-visible water. Around the entire room are bookshelves, filled with ancient texts and covered in dust.</longdescription>
+				<key match="cross( bridge)?">
+					<utopiascript>print You walk across the bridge carefully and almost fall in, but make it to the other side unscathed.</utopiascript>
+				</key>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Passion!</utopiascript>
+					<utopiascript>addItem 2</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>In the middle of the room is a platform, with a moat around it. The platform is empty, and there is an invisible bridge across the moat.</shortdescription>
+				<longdescription>In the middle of the room is a platform, ringed with a moat. The moat is ten feet wide, and filled with what appear to be piranha. There is an invisible bridge covered in water. Around the entire room are bookshelves, filled with ancient texts and covered in dust.</longdescription>
+				<key match="cross( bridge)?">
+					<utopiascript>print You walk across the bridge carefully and almost fall in, but make it to the other side unscathed.</utopiascript>
+				</key>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You already have the Book of Passion!</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="3" y="1"> <!-- Empty Room -->
+			<roomstate>
+				<shortdescription>As you enter the room, you notice that there are three exits: North, South, and West. The walls are lined with bookshelves, recessed into the wall, and empty.</shortdescription>
+				<longdescription>As you enter the room, you notice that there are three exits: North, South, and West. The walls are lined with bookshelves, recessed into the wall, and empty.</longdescription>
+			</roomstate>
+		</room>
+		<room x="0" y="2"> <!-- Get Ye Flask Room -->
+			<roomkey match="((move )|(go ))?dennis">
+				<utopiascript>go +1/+0</utopiascript>
+			</roomkey>
+			<roomkey match="((get)|(grab)|(take)) flask">
+				<utopiascript>print Which FLASK?</utopiascript>
+			</roomkey>
+			<roomkey match="((get)|(grab)|(take)) the flask">
+				<utopiascript>print The? THE flask? What are you, old? This is YE FLASK.</utopiascript>
+			</roomkey>
+			<roomkey match="get">
+				<utopiascript>print Get what?</utopiascript>
+			</roomkey>
+			<roomkey match="grab">
+				<utopiascript>print Grab what?</utopiascript>
+			</roomkey>
+			<roomkey match="take">
+				<utopiascript>print Take what?</utopiascript>
+			</roomkey>
+			<roomkey match="grab ye flask">
+				<utopiascript>print Who GRABs things? I prefer to GET them.</utopiascript>
+			</roomkey>
+			<roomkey match="take ye flask">
+				<utopiascript>print Who TAKEs things? I prefer to GET them.</utopiascript>
+			</roomkey>
+			<roomstate>
+				<shortdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</shortdescription>
+				<longdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</longdescription>
+				<key match="get ye flask">
+					<utopiascript>print You cannot get the flask. It is firmly bolted to the wall which is bolted to the rest of the legal library which is probably bolted to the rest of the library. Never you mind.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</shortdescription>
+				<longdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</longdescription>
+				<key match="get ye flask">
+					<utopiascript>print You cannot get the flask. It is firmly bolted to the wall which is bolted to the rest of the legal library which is probably bolted to the rest of the library. Never you mind.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</shortdescription>
+				<longdescription>Ye find yourself in yon dungeon. Ye see a FLASK. Obviou exits are NORTH, SOUTH, and DENNIS.\n\nWhat wouldst thou deau?</longdescription>
+				<key match="get ye flask">
+					<utopiascript>quitGame Okay, okay. You unbolt yon flask and hold it aloft. A great shaking begins. The library ceiling collapses down upon you, crushing you in twain. Apparently, this was a load-bearing flask.</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="1" y="2"> <!-- Unity Room -->
+			<roomstate>
+				<shortdescription>In the middle of the room, on a pedestal, is a shining white book, adorned with interlocking rings, and a flag of Bacrum. It tells you: "Lift me, and I shall guide you."</shortdescription>
+				<longdescription>As you enter the room, you are temporarily blinded. As your eyes adjust to the light, which is significantly brighter than in the adjoining rooms, you notice that there is no obvious source of light, but that in the middle of the room is a shining pearline pedestal, on top of which is a pristine white book, closed. Attached to the front cover are ten golden rings, two inches in diameter each, interlocking, forming a circle. On the spine of the book is a long piece of cloth, emblazoned with the emblem of Bacrum. As you approach the pedestal, the book speaks to you: "Lift me, and I shall guide you."</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Unity! It says to you, "While in this room, speak the name of one of the other books, and I will guide you in finding it. They are: Deception, Passion, Restraint, Foresight, Blindness, Discovery, Stagnancy, Elegance, and Bureaucracy."</utopiascript>
+					<utopiascript>addItem 0</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>In the middle of the room, is the pedestal on which the Book of Unity sat. It tells you from within your bag: "Name another book, and I shall guide you."</shortdescription>
+				<longdescription>As you enter the room, you are temporarily blinded. As your eyes adjust to the light, which is significantly brighter than in the adjoining rooms, you notice that there is no obvious source of light, but that in the middle of the room is the shining pearline pedestal, which used to hold the Book of Unity As you approach the pedestal, the book speaks to you from within your bag: "Name one of the other books and I shall guide you. They are: Deception, Passion, Restraint, Foresight, Blindness, Discovery, Stagnancy, Elegance, and Bureaucracy."</longdescription>
+				<key match="(book of )?unity">
+					<utopiascript>print You already have the Book of Unity. Ask of one of the others: Deception, Passion, Restraint, Foresight, Blindness, Discovery, Stagnancy, Elegance, and Bureaucracy.</utopiascript>
+				</key>
+				<key match="(book of )?deception">
+					<utopiascript>print The key to the Book of Deception is to bet it all; go for broke. If you don't, then next time, take it back a bit.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?passion">
+					<utopiascript>print The key to the Book of Passion is to not let appearances get the best of you. Sometimes, you see things that aren't there, and other times, you don't see things that are.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?restraint">
+					<utopiascript>print The key to the Book of Restraint is to touch nothing but the lamp!</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?foresight">
+					<utopiascript>print You've had the Book of Foresight for quite some time now. In fact... longer than you've been alive. That is odd.</utopiascript>
+				</key>
+				<key match="(book of )?blindness">
+					<utopiascript>print The key to the Book of Blindness is that only the most eleet will be able to succeed.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?discovery">
+					<utopiascript>print The key to the Book of Discovery is to see beyond what is, and instead decide what could be.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?stagnancy">
+					<utopiascript>print The key to the Book of Stagnancy is to give it what it wants.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?elegance">
+					<utopiascript>print The key to the Book of Elegance is... well, Elegance and I have always seen eye to eye.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(book of )?bureaucracy">
+					<utopiascript>print The key to the Book of Bureaucracy is to realize that bureaucrats want to control every breath you take, every step you make.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>In the middle of the room, on a pedestal, is a shining white pedestal. The Book of Unity tells you: "Bacrum Law forbids me from giving you another clue."</shortdescription>
+				<longdescription>As you enter the room, you are temporarily blinded. As your eyes adjust to the light, which is significantly brighter than in the adjoining rooms, you notice that there is no obvious source of light, but that in the middle of the room is the shining pearline pedestal, which used to hold the Book of Unity As you approach the pedestal, the book speaks to you from within your bag: "I have already given you a clue for another book. Bacrum Law forbids me from telling any more."</longdescription>
+				<key match="(book of )?((unity)|(deception)|(passion)|(restraint)|(foresight)|(blindness)|(discovery)|(stagnancy)|(elegance)|(bureaucracy))">
+					<utopiascript>print The Book of Unity tells you: "I have already given you a clue. Bacrum Law forbids me from telling you any more."</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="2" y="2"> <!-- Deception Room -->
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are three books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2, 3. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?3">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-3]">
+					<utopiascript>print As you lift the book, all of the books crumble to dust, and the misty numbers float away, and FOUR new identical books appear on the floor around you, numbered by the mist as before.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are four books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2, 3, 4. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?1">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-4]">
+					<utopiascript>print As you lift the book, all of the books crumble to dust, and the misty numbers float away, and FIVE new identical books appear on the floor around you, numbered by the mist as before.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are five books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2, 3, 4, 5. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?4">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-5]">
+					<utopiascript>print As you lift the book, all of the books crumble to dust, and the misty numbers float away, and FOUR new identical books appear on the floor around you, numbered by the mist as before.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are four books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2, 3, 4. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?2">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-4]">
+					<utopiascript>print As you lift the book, all of the books crumble to dust, and the misty numbers float away, and THREE new identical books appear on the floor around you, numbered by the mist as before.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are three books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2, 3. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?3">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-3]">
+					<utopiascript>print As you lift the book, all of the books crumble to dust, and the misty numbers float away, and TWO new identical books appear on the floor around you, numbered by the mist as before.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>Sinister-looking books sit on the floor near the middle of the room, but it's so gloomy that it's hard to see. Maybe if you looked closer...</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. In the middle of the room on the floor are two books. Each book is identical, and they are extremely sinister-looking. Each book is solid black, save for the blades of the crossed daggers on the front. The spine of each book seems to be made of black vertebrae and the fronts of the books are patterned in various bones. As the books notice you, ghostly green mist issues forth from the books, and coalesces into numbers, hovering midair above each book... 1, 2. You hear a whisper in your ear, "...grab me if you can..."</longdescription>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?1">
+					<utopiascript>print As you lift the book, every other book in the room crumbles to dust, and all of the green mist disappears, though the gloom hanging over the room remains. You received the Book of Deception!</utopiascript>
+					<utopiascript>addItem 1</utopiascript>
+					<utopiascript>roomstate = 6</utopiascript>
+				</key>
+				<key match="((grab )|(take )|(pick up ))?(book )?#?[0-2]">
+					<utopiascript>quitGame As you lift the book, all of the books crumble to dust, and the misty numbers float away. The mist coalesces into a cackling face, laughing at your stupidity, then hurls itself down your throat. You choke and die, because you're really bad at picking things at random. Seriously, only a 10% chance of picking wrong EVERY time.</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. The Book of Deception used to sit here, black, covered in bones, and ornamented with daggers.</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is dim, and you feel a curtain of gloom hang over the area. The Book of Deception used to sit here, black, covered in bones, and ornamented with daggers.</longdescription>
+			</roomstate>
+		</room>
+		<room x="3" y="2"> <!-- Stagnancy Room -->
+			<roomkey match="cross( bridge)?">
+				<utopiascript>print You cross the bridge without molestation. Nope, no trolls here!</utopiascript>
+			</roomkey>
+			<roomstate>
+				<shortdescription>There is a river in the room, and at the bottom of it is a raggedy-looking moss-covered book. At either end of the room is a bridge and a lever.</shortdescription>
+				<longdescription>Initially, all you notice is the roaring of rushing water. As you look around, you notice that the water is rushing along a trough, recessed into the floor, that spans the entire room, from the northwest to the southeast. There are two bridges crossing the water, on opposite ends of the trough. The walls, floor, and bridge are slick with condensation. As you get nearer the edge of the trough, you notice that it is about 4 feet deep, and that on the very bottom of the trough, in the middle of the room, is a book. The book looks as if it has been sitting in a swamp for quite some time; its pages are warped, it is wrapped in plant life, and the binding seems to be blanketed in moss. Next to each bridge is a lever. At the base of each lever is a number. The lever at the northwest end of the room is numbered 1, and the other is numbered 2.</longdescription>
+				<key match="(pull )?(lever )?1">
+					<utopiascript>print As you pull the lever, a dam swings into place at the northwest end of the room. As it closes, the water slows to a trickle, but the sound of the water against it is deafening. The book at the bottom of the trough is visibly angry, and wraps itself tightly in vines. There's no way to pick it up or pry the vines off.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="(pull )?(lever )?2">
+					<utopiascript>print As you pull the lever, a steel door swings into place at the bottom of the river, into the raging torrent. There's nothing there to keep it from swinging back, except the loudly complaining mechanism that is fighting against the current. The door will probably swing back out soon.</utopiascript>
+					<utopiascript>roomstate +2</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>In this room, trough runs northwest to southeast, and is devoid of water. At the bottom of the trough is a moss-covered book, that gives you the appearance of obstinately demanding to be submerged again.</shortdescription>
+				<longdescription>Initially, all you notice the roaring of water pounding at a steel door at the northwest end of the trough running through the room. The trough runs northwest to southeast, and is devoid of water. At the bottom of the trough is a moss-covered book, that gives you the appearance of obstinately demanding to be submerged again. There are two levers in the room: Lever 1 at the northwest end, and Lever 2 at the southeast end.</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You try and you try, but you can't pry the vines off of the book. It's stuck there.</utopiascript>
+				</key>
+				<key match="(pull )?(lever )?1">
+					<utopiascript>print The dam at the top of the river swings back open, and the water continues to flood through the room as before.</utopiascript>
+					<utopiascript>roomstate -1</utopiascript>
+				</key>
+				<key match="(pull )?(lever )?2">
+					<utopiascript>print A steel door at the southeast end of the room swings into place, then continues swinging up into the wall, and then goes back to where it was.</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>The steel door at the bottom of the river is taking a lot of pounding. It probably won't last much longer.</shortdescription>
+				<longdescription>There is a dammed river in the room, and at the bottom of it is a raggedy-looking moss-covered book. At either end of the room is a bridge and a lever. The steel door at the southeast end of the river is taking a lot of pounding. It probably won't last much longer. There are two levers in the room: Lever 1 at the northwest end, and Lever 2 at the southeast end.</longdescription>
+				<key match="(pull )?(lever )?1">
+					<utopiascript>print As you pull the lever, a steel door swings into place at the top of the river, leaving the trough full but unmoving. The water quickly darkens and fills with pond scum - much faster than it should have - and you hear an audible sigh come from beneath the water. The book floats to the top, and happily drifts towards you.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match=".*">
+					<utopiascript>print Took too long! The door SLAMS open, and the water continues flooding through the room.</utopiascript>
+					<utopiascript>roomstate -2</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>The trough in the room is darkened to almost black, and filled with pond scum. You can, however, see the book clearly floating happily on the water. You can even reach it from the shore!</shortdescription>
+				<longdescription>There is a trough recessed into the floor in the middle of the room, filled with water darkened to almost black, and filled with pond scum. You can, however, see the book clearly floating happily on the water. You feel a sense of completion, and of complacency welling forth from the book, which is within arm's reach of the edge of the trough. There are bridges and levers at the northwest and southeast corners of the room.</longdescription>
+				<key match="(pull )?(lever )?[1-2]">
+					<utopiascript>print As you pull the lever, a steel door swings into place and then just keeps swinging. It bounces off of the wall, then swings back to where it started.</utopiascript>
+				</key>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Stagnancy!</utopiascript>
+					<utopiascript>addItem 7</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>There is a trough recessed into the floor in the middle of the room, filled with water darkened to almost black, and filled with pond scum. The Book of Stagnancy used to sit at the bottom of the trough. There are bridges and levers at the northwest and southeast corners of the room.</shortdescription>
+				<longdescription>There is a trough recessed into the floor in the middle of the room, filled with water darkened to almost black, and filled with pond scum. The Book of Stagnancy used to sit at the bottom of the trough. There are bridges and levers at the northwest and southeast corners of the room.</longdescription>
+			</roomstate>
+		</room>
+		<room x="0" y="3"> <!-- Bureaucracy Room -->
+			<roomkey match="grab( pen)?">
+				<utopiascript>print The pen resists your attempt to grab it forcefully. Perhaps try to take it more gently?</utopiascript>
+			</roomkey>
+			<roomstate>
+				<shortdescription>Your progress is arrested by animated papers after a single step into the room. A pen flutters by your ear, and demands that you sign them.", "Your progress is arrested by animated papers after two steps into the room. A pen flutters by your ear, and demands that you sign them.</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is filled with stacks upon stacks of papers, books, rolls of parchment, various writing implements, and what appears to be hundreds of years' worth of newspapers. The only entrances to the room are to the south and east, and in the northwest corner of the room is a podium, containing an open book, on a raised dias. The book is covered in small notes, filled with extra papers held in by paperclips, and wrapped in red tape. As you take a step into the room, dozens of animated parchments with indecipherable text (despite being in your native language) materialize in front of you, blocking your path. A pen flutters by your ear continuously, and you have the sudden realization that the pen wants you to use it to sign the papers.</longdescription>
+				<key match="(walk)|(move( forward)?)|(jump)|(push)">
+					<utopiascript>print Your every attempt to move, evade, or otherwise circumvent the fluttering parchment is buffeted violently.</utopiascript>
+				</key>
+				<key match="sign( papers?)?">
+					<utopiascript>print As you sign the paper directly in front of you, they all dematerialize. You take a another step forward, and everything seems to be fine.</utopiascript>
+					<utopiascript>addItem 11</utopiascript>
+					<utopiascript>requireItem 11 13 \n\nSuddenly your progress is arrested by another torrent of papers, and a pen that similarly flutters by your ear.</utopiascript>
+					<utopiascript>print \n\nNo papers swarm you. Your access to the book is unfettered!</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>You reach the opposite side of the room without issue, and there is no sign of movement in the whole room. You approach the podium without issue, and the book lay open before you.</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is filled with stacks upon stacks of papers, books, rolls of parchment, various writing implements, and what appears to be hundreds of years' worth of newspapers. The only entrances to the room are to the south and east, and in the northwest corner of the room is a podium, containing an open book, on a raised dias. The book is covered in small notes, filled with extra papers held in by paperclips, and wrapped in red tape. You walk the entire way to the book without any parchments impeding your path.</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Bureaucracy!</utopiascript>
+					<utopiascript>addItem 9</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="sign( papers?)?">
+					<utopiascript>print There are no more papers to sign! The book is there in front of you!</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>You reach the opposite side of the room without issue, and there is no sign of movement in the whole room. In front of you stands the podium that used to hold the Book of Bureaucracy.</shortdescription>
+				<longdescription>As you enter the room, you notice that the room is filled with stacks upon stacks of papers, books, rolls of parchment, various writing implements, and what appears to be hundreds of years' worth of newspapers. The only entrances to the room are to the south and east, and in the northwest corner of the room is an empty podium on a raised dias, which used to contain the Book of Bureaucracy.</longdescription>
+			</roomstate>
+		</room>
+		<room x="1" y="3"> <!-- Blindness Room -->
+			<roomkey match="spin">
+				<utopiascript>print Spin the dial which way?</utopiascript>
+				<utopiascript>requireItem 5</utopiascript>
+				<utopiascript>print \n\nNevermind, THE SAFE IS OPEN. STOP PLAYING WITH IT.</utopiascript>
+			</roomkey>
+			<roomstate>
+				<shortdescription>There is a safe recessed into the floor in the middle of the room. There is a dial.</shortdescription>
+				<longdescription>As you start to look around, you see... nothing. Absolutely nothing. The entire room is dark. As you walk forward, you trip over something on the floor. Upon further inspection, you find that it is a dial. It has several notches on it. It spins freely, and seems to be attached to a door of some sort. You divine that it is the door to a safe. You'll need to spin the dial a certain number of times to get it open. You remember that safes always turn right, left, right. To get a read on it, you could try spinning it to see if you hear anything.</longdescription>
+				<key match="(spin )?right">
+					<utopiascript>print click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click Click click click click click click click click click click</utopiascript>
+				</key>
+				<key match="(spin )?left">
+					<utopiascript>print click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click</utopiascript>
+				</key>
+				<key match="right 31">
+					<utopiascript>print As you spin the dial to 31 right, one of the tumblers within the safe falls into place.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="((left)|(right)) [0-9]+">
+					<utopiascript>print You spin the a specific number of clicks, and nothing happens. You re-zero it.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>There is a safe recessed into the floor in the middle of the room. There is a dial. You spin it to 31 right.</shortdescription>
+				<longdescription>As you start to look around, you see... nothing. Absolutely nothing. The entire room is dark. You remember that there is a safe recessed into the middle of the floor. You'll need to spin the dial a certain number of times to get it open. You remember that safes always turn right, left, right. You spun it to 31 right, and a tumbler dropped, so you do that again.</longdescription>
+				<key match="(spin )?right">
+					<utopiascript>print click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click</utopiascript>
+				</key>
+				<key match="(spin )?left">
+					<utopiascript>print click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click Click click click click click click click click</utopiascript>
+				</key>
+				<key match="left 33">
+					<utopiascript>print As you spin the dial to 33 left, one of the tumblers within the safe falls into place.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="((left)|(right)) [0-9]+">
+					<utopiascript>print You spin the a specific number of clicks, and nothing happens. You re-zero it, then 31 right.</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>There is a safe recessed into the floor in the middle of the room. There is a dial. You spin it to 31 right, then 33 to the left.</shortdescription>
+				<longdescription>As you start to look around, you see... nothing. Absolutely nothing. The entire room is dark. You remember that there is a safe recessed into the middle of the floor. You'll need to spin the dial a certain number of times to get it open. You remember that safes always turn right, left, right. You spun it to 31 right, and then 33 to the left, so you do that again.</longdescription>
+				<key match="(spin )?right">
+					<utopiascript>print click click click click click click Click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click</utopiascript>
+				</key>
+				<key match="(spin )?left">
+					<utopiascript>print click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click click</utopiascript>
+				</key>
+				<key match="right 7">
+					<utopiascript>print As you spin the dial to 7 right, the last tumbler within the safe falls into place. The lock unlatches and the door opens. You can hear a book within arm's reach.</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+				<key match="((left)|(right)) [0-9]+">
+					<utopiascript>print You spin the a specific number of clicks, and nothing happens. You re-zero it, then 31 right, then 33 left.</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>There is a safe recessed into the floor in the middle of the room. The safe sits open now, and the book is within arm's reach.</shortdescription>
+				<longdescription>As you start to look around, you see... nothing. Absolutely nothing. The entire room is dark. You remember that there is a safe recessed into the middle of the floor. The safe sits open, and you can hear the book at the bottom of it, within arm's reach.</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Blindness!</utopiascript>
+					<utopiascript>addItem 5</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>The room is pitch-black, and empty save for an open safe recessed into the floor, which used to hold the Book of Blindness.</shortdescription>
+				<longdescription>The room is pitch-black, and empty save for an open safe recessed into the floor, which used to hold the Book of Blindness.</longdescription>
+			</roomstate>
+		</room>
+		<room x="2" y="3"> <!-- Rocks Fall Everyone Dies Room -->
+			<roomstate>
+				<shortdescription>The room is lit by torches. There are three women, bound, gagged, and barely conscious, in cells on the north side of the room. To the left of each cell is a numbered lever.</shortdescription>
+				<longdescription>As you enter the room, you immediately notice that the room is lit by flickering torches on the walls. On the north side of the room are three cells, recessed into a wall. In each cell is a human female, bound, gagged, barely conscious, and clearly underfed. On the wall to the left of each cell is a large lever. They are numbered 1, 2, and 3.</longdescription>
+				<key match="pull( lever)?">
+					<utopiascript>print Pull which lever?</utopiascript>
+				</key>
+				<key match="pull (lever )?[1-3]">
+					<utopiascript>quitGame The ceiling makes loud noises, then falls open on a hinge. Now that the ceiling is open, there is nothing stopping the giant rocks. Rocks fall, everyone dies.</utopiascript>
+				</key>
+			</roomstate>
+		</room>
+		<room x="3" y="3"> <!-- Elegance Room -->
+			<roomstate>
+				<shortdescription>The tiles beneath your feet flip, and usher you towards a beautiful pedestal on which sits a beautiful book.</shortdescription>
+				<longdescription>At first, you notice that the floor of this room is tiled in brightly-colored and well-polished ceramic tiles, and that the walls are embroidered with gold filigree. As you start looking around, the tiles beneath your feet start flipping gracefully, ushering you towards a beautifully-wrought silver pedestal in the northeast corner of the room, holding a closed book with satin bookmarks and gold decorations.</longdescription>
+				<key match="((take)|(grab)|(pick up)|(lift))(( the)? book)?">
+					<utopiascript>print You received the Book of Elegance!</utopiascript>
+					<utopiascript>addItem 8</utopiascript>
+					<utopiascript>roomstate +1</utopiascript>
+				</key>
+			</roomstate>
+			<roomstate>
+				<shortdescription>On the opposite end of the room sits a beautiful pedestal on which used to sit the Book of Elegance.</shortdescription>
+				<longdescription>At first, you notice that the floor of this room is tiled in brightly-colored and well-polished ceramic tiles, and that the walls are embroidered with gold filigree. As you start looking around, you notice the pedestal in the northeast corner of the room, which used to contain the Book of Elegance.</longdescription>
+			</roomstate>
+		</room>
+	</rooms>
+	<!-- Setup does not exist yet, but is planned for v2.2 of the Engine -->
+	<setup>
+		<!--
+			Though this game does not use it, fully-featured JavaScript, with consistent state, IS AVAILABLE for use with the Engine.
+			The problem with using JavaScript is that the only way it can interact with the Engine is via the print("") function, and to modify the score.
+			There are plans to allow for JavaScript to modify roomstates and inventories.
+		-->
+		<javascript></javascript>
+		<utopiascript></utopiascript>
+	</setup>
+</game>
